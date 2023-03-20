@@ -24,8 +24,7 @@ contract TestERC is ERC721URIStorage, Ownable { //오픈제플린 라이브러�
  
    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
        require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
-       string memory baseURI = _baseURI();
-       return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, tokenId.toString())) : "";
+       return bytes(_baseURI()).length > 0 ? string(abi.encodePacked(_baseURI(), tokenId.toString())) : "";
    }
  
    function mint(address to, uint256 tokenId) public onlyOwner{
